@@ -62,9 +62,10 @@ dap.listeners.before.event_terminated.dapui_config = function() dapui.close() en
 dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
 
 -- ── Python ────────────────────────────────────────────────────────────────────
--- nvim-dap-python locates debugpy for you. Mason installs debugpy; "python3"
--- tells the helper to use your system python to find it.
-require("dap-python").setup("python3")
+-- Mason installs debugpy into its own virtual environment, not into your system
+-- Python. We have to point dap-python at Mason's venv python explicitly,
+-- otherwise it looks in the system Python and can't find debugpy.
+require("dap-python").setup(vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python")
 
 -- ── Rust ──────────────────────────────────────────────────────────────────────
 -- codelldb is an LLDB-based adapter. Mason installs it and puts it on PATH.
