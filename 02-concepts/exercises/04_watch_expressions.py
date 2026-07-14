@@ -30,5 +30,5 @@ data = [10, 30, 50, 30, 70, 10]
 result = find_duplicate(data)
 print(f"First duplicate value: {result}")
 
-# Expected: 30   (the value that appears twice)
-# Actual:   3    (looks like it could be right, but it's the index, not the value)
+# Expected: 3    (looks like it could be right, but it's the index, not the value)
+# Actual:   30   (the value that appears twice)

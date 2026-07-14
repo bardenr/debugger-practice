@@ -8,7 +8,7 @@
 #
 # Instructions:
 #   1. Set a breakpoint on the first line inside range_of (the `hi = ...` line)
-#   2. Press <Leader>dc and select "Python: Current File"
+#   2. Press <Leader>dc and select "file"
 #   3. Step OVER each helper call with <Leader>dn. After each one, read the
 #      value it assigned in the Locals panel. Does it look right?
 #   4. When you find the wrong intermediate value, restart (<Leader>dr)

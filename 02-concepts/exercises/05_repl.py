@@ -6,7 +6,7 @@
 #
 # Instructions:
 #   1. Set a breakpoint inside decode on the `shift = ...` line
-#   2. Press <Leader>dc and select "Python: Current File"
+#   2. Press <Leader>dc and select "file"
 #   3. Continue past the first word (i=0) until i=1
 #   4. Open the REPL with <Leader>d>
 #   5. In the REPL, inspect `shift`, `word`, and `key`

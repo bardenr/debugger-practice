@@ -4,15 +4,38 @@
 # Instead it returns a mix of zeros and wrong values.
 #
 # Instructions:
-#   1. Set a breakpoint on the `result.append(...)` line inside flatten
-#   2. Press <Leader>dc and select "Python: Current File"
-#   3. The first pause will be at depth=0 (the outermost call). Note the
-#      value of `depth` in the Locals panel, then continue with <Leader>dc
-#   4. Keep continuing until the call stack panel shows 3+ frames (you are
-#      a few levels deep in the recursion)
-#   5. Navigate UP the call stack frames. Look at `depth` at each level.
-#   6. What is `depth` at the top level? What does that mean for items
-#      processed there?
+#
+# STEP 1 — Start the session
+#   Set a breakpoint on the `result.append(item * depth)` line inside flatten.
+#   Press <Leader>dc and select "file".
+#
+# STEP 2 — Get deep enough in the recursion
+#   The first pause is at depth=0. Keep pressing <Leader>dc to continue.
+#   Watch the "Stacks" panel in nvim-dap-ui — it shows the active call chain.
+#   Stop when you see 3 or more "flatten" frames listed (depth=2 or deeper).
+#   You'll know you're there when the Locals panel shows depth=2.
+#
+# STEP 3 — Navigate frames with keymaps (no UI interaction needed)
+#   Do NOT try to click or press Enter in the Stacks panel — nvim-dap-ui
+#   doesn't support frame selection that way and will show an error.
+#
+#   Instead, stay in the source window and use:
+#     <Leader>dk  — move up one frame (toward the outer/caller)
+#     <Leader>dj  — move down one frame (toward the inner/callee)
+#
+#   Each press updates the Locals panel immediately. You can watch `depth`
+#   change in the Locals panel as you move through the frames. The Stacks
+#   panel shows which frame is currently active (marked with an arrow or
+#   highlight) so you can use it as a visual reference, but you don't need
+#   to interact with it directly.
+#
+# STEP 4 — Read depth at each frame
+#   Press <Leader>dk repeatedly to move toward the outermost flatten call.
+#   At each step, check `depth` in the Locals panel.
+#
+#   What is `depth` at the outermost flatten frame?
+#   What does `item * depth` compute when depth is that value?
+#   That is the bug.
 #
 # Constraint: do not add print statements.
 

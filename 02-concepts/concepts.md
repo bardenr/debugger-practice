@@ -9,7 +9,7 @@ Each section explains one concept, then gives you a small Python program with a 
 To run an exercise:
 1. Open the file in Neovim
 2. Set a breakpoint where the instructions say
-3. Press `<Leader>dc` → select "Python: Current File"
+3. Press `<Leader>dc` → select "file"
 
 ---
 
@@ -17,7 +17,7 @@ To run an exercise:
 
 A breakpoint tells the debugger to pause execution at a specific line. When the program reaches that line, it freezes — the process is suspended but still alive — and you can inspect everything in scope.
 
-Press `<Leader>dp` on any line to toggle a breakpoint. A red dot appears in the gutter. Press `<Leader>dc` to start; the program runs at full speed until it hits the breakpoint, then stops.
+Press `<Leader>dp` on any line to toggle a breakpoint. A `●` appears in the gutter (red if you've configured the sign highlights in your dap config, grey otherwise). Press `<Leader>dc` to start; the program runs at full speed until it hits the breakpoint, then stops.
 
 When paused, the nvim-dap-ui panels show:
 - **Locals** — every variable in the current function scope, with its current value
@@ -83,7 +83,7 @@ Do not read the helper functions before you start. Use step over to identify whi
 
 When your program pauses, you may be inside a chain of calls: `main` called `process`, which called `transform`, which called `validate`. Each active function call is a **frame**. The list of frames — from outermost to innermost — is the **call stack**.
 
-The call stack panel in nvim-dap-ui shows every frame. You can navigate to any frame (click, or use the panel controls), and the Locals panel updates to show the variables *at that level of the stack*. The program is still paused in the innermost frame — you're just looking around.
+The call stack panel in nvim-dap-ui shows every frame. Navigate to any frame with `<Leader>dk` (toward outer/caller) and `<Leader>dj` (toward inner/callee) — the Locals panel updates immediately. The program is still paused in the innermost frame; you're just looking around at a different level.
 
 This matters most for recursive functions or deep call chains where the problem may be in what was *passed in*, not what the function does with it.
 
@@ -93,9 +93,9 @@ Open `exercises/03_call_stack.py`. A recursive flatten function returns wrong va
 
 **Instructions:**
 1. Set a breakpoint on the `result.append(...)` line inside `flatten`
-2. Press `<Leader>dc`. It will pause on the first non-list item. Continue with `<Leader>dc` a few more times until you're several levels deep (you'll see the call stack growing)
-3. In the call stack panel, navigate to the parent frames. Look at the `depth` variable at each level
-4. What does `depth` equal at the top-level call? What does that tell you about what's happening to top-level items?
+2. Press `<Leader>dc`. Continue a few times until you're several levels deep (watch the Stacks panel grow)
+3. Press `<Leader>dk` to move up toward the outer call. Check `depth` in Locals after each press
+4. What does `depth` equal at the outermost frame? What does that tell you about what's happening to top-level items?
 
 ---
 

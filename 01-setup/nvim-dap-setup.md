@@ -41,6 +41,22 @@ Put the configuration in `~/.config/nvim/after/plugin/dap.lua`. Files in `after/
 local dap = require("dap")
 local dapui = require("dapui")
 
+-- ── Signs ────────────────────────────────────────────────────────────────────
+-- nvim-dap doesn't style its gutter signs by default. Without this you get
+-- a plain grey "B" regardless of whether the breakpoint is verified or not.
+vim.fn.sign_define("DapBreakpoint",          { text = "●", texthl = "DapBreakpoint" })
+vim.fn.sign_define("DapBreakpointCondition", { text = "◆", texthl = "DapBreakpointCondition" })
+vim.fn.sign_define("DapBreakpointRejected",  { text = "●", texthl = "DapBreakpointRejected" })
+vim.fn.sign_define("DapLogPoint",            { text = "◆", texthl = "DapLogPoint" })
+vim.fn.sign_define("DapStopped",             { text = "▶", texthl = "DapStopped", linehl = "DapStopped" })
+
+-- Link to Diagnostic highlight groups so the colors adapt to your colorscheme.
+vim.api.nvim_set_hl(0, "DapBreakpoint",          { link = "DiagnosticError" })  -- red  = verified
+vim.api.nvim_set_hl(0, "DapBreakpointCondition", { link = "DiagnosticWarn" })   -- yellow = conditional
+vim.api.nvim_set_hl(0, "DapBreakpointRejected",  { link = "DiagnosticHint" })   -- muted = rejected/unverified
+vim.api.nvim_set_hl(0, "DapLogPoint",            { link = "DiagnosticInfo" })   -- blue = logpoint
+vim.api.nvim_set_hl(0, "DapStopped",             { link = "DiagnosticOk" })     -- green = current line
+
 -- ── Mason: install debug adapters ────────────────────────────────────────────
 -- Run :Mason after first launch to confirm these are installed.
 require("mason").setup()
@@ -141,6 +157,11 @@ map("<Leader>de", dapui.eval,           "Debug: Evaluate Expression")
 map("<Leader>dL", dap.list_breakpoints, "Debug: List Breakpoints")
 map("<Leader>dC", dap.clear_breakpoints,"Debug: Clear All Breakpoints")
 
+-- Call stack frame navigation
+-- k/j = up/down in Vim; same direction in the call stack display
+map("<Leader>dk", dap.up,               "Debug: Up one frame (toward caller)")
+map("<Leader>dj", dap.down,             "Debug: Down one frame (toward callee)")
+
 -- REPL
 map("<Leader>d>", dap.repl.open,        "Debug: Open REPL")
 ```
@@ -160,6 +181,8 @@ map("<Leader>d>", dap.repl.open,        "Debug: Open REPL")
 | `<Leader>dl` | Logpoint | Print a message to the console without stopping |
 | `<Leader>de` | Evaluate | Evaluate an expression in the current scope and show the result |
 | `<Leader>du` | Toggle UI | Show/hide the dap-ui panels |
+| `<Leader>dk` | Up one frame | Move to the caller (outer frame); Locals panel updates |
+| `<Leader>dj` | Down one frame | Move to the callee (inner frame); Locals panel updates |
 | `<Leader>d>` | Open REPL | Run arbitrary code in the paused context |
 
 > **On the letter choices:** `c`, `n`, `s`, `f` are the actual GDB command names (`continue`, `next`, `step`, `finish`). When you move to GDB/GEF later, the same mental model transfers directly.
@@ -183,7 +206,7 @@ result = add(2, 3)
 print(result)
 ```
 
-Open it in Neovim, set a breakpoint on the `return` line with `<Leader>dp`, then press `<Leader>dc`. Choose "Python: Current File" from the picker. The UI should open and execution should pause on the breakpoint.
+Open it in Neovim, set a breakpoint on the `return` line with `<Leader>dp`, then press `<Leader>dc`. Choose "file" from the picker. The UI should open and execution should pause on the breakpoint.
 
 ### C
 
@@ -267,7 +290,7 @@ dap.configurations.zig = {
 
 **"No configuration found for filetype":** You started a debug session in a file type that doesn't have a `dap.configurations` entry. Make sure the file you're in matches the language (e.g. a `.py` file for Python).
 
-**Breakpoints show as unverified (grey, not red):** The adapter hasn't confirmed it can resolve the breakpoint. For C, this usually means the binary was compiled without `-g`. For Python, it can mean debugpy isn't installed in the Python the adapter is using.
+**Breakpoints show as a muted/grey `●` instead of red:** Two possible causes. First, check that you've added the sign definitions above — without them all breakpoints look grey regardless of status. If the signs are configured and a breakpoint is still showing in the `DapBreakpointRejected` style (muted), the adapter couldn't resolve it: for C this usually means the binary was compiled without `-g`; for Python it can mean debugpy isn't installed in the Python the adapter is using.
 
 **codelldb not found:** Run `:Mason` and check that codelldb is installed. If `vim.fn.exepath("codelldb")` returns empty, Mason may not have its bin directory on Neovim's PATH — confirm with `:echo $PATH` inside Neovim.
 

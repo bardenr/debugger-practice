@@ -5,7 +5,7 @@
 #
 # Instructions:
 #   1. Set a breakpoint on the `if char in "aeiou":` line
-#   2. Press <Leader>dc and select "Python: Current File"
+#   2. Press <Leader>dc and select "file"
 #   3. When paused, look at the Locals panel — note the values of `char` and `count`
 #   4. Press <Leader>dc again. Does it pause a second time for the same word?
 #   5. That observation is your clue. Figure out why execution doesn't
@@ -30,6 +30,6 @@ for word in words:
 
 # Expected:
 #   hello: 2 vowels
-#   world: 1 vowel
-#   python: 1 vowel
+#   world: 1 vowels
+#   python: 1 vowels
 #   debugger: 3 vowels
