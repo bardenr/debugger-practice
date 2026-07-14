@@ -6,7 +6,7 @@
 # Instructions:
 #   1. Set a breakpoint on the self.items.append(...) line inside add_item
 #   2. Add watches for: self.items    self.owner
-#   3. Press <F5> and step through adding items to cart1, then cart2
+#   3. Press <Leader>dc and step through adding items to cart1, then cart2
 #   4. Watch self.items carefully as you cross from cart1 to cart2 —
 #      does anything about it surprise you?
 #   5. When paused inside cart2's first add_item call, open the REPL

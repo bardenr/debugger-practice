@@ -9,7 +9,7 @@ Each section explains one concept, then gives you a small Python program with a 
 To run an exercise:
 1. Open the file in Neovim
 2. Set a breakpoint where the instructions say
-3. Press `<F5>` → select "Python: Current File"
+3. Press `<Leader>dc` → select "Python: Current File"
 
 ---
 
@@ -17,7 +17,7 @@ To run an exercise:
 
 A breakpoint tells the debugger to pause execution at a specific line. When the program reaches that line, it freezes — the process is suspended but still alive — and you can inspect everything in scope.
 
-Press `<Leader>dp` on any line to toggle a breakpoint. A red dot appears in the gutter. Press `<F5>` to start; the program runs at full speed until it hits the breakpoint, then stops.
+Press `<Leader>dp` on any line to toggle a breakpoint. A red dot appears in the gutter. Press `<Leader>dc` to start; the program runs at full speed until it hits the breakpoint, then stops.
 
 When paused, the nvim-dap-ui panels show:
 - **Locals** — every variable in the current function scope, with its current value
@@ -38,9 +38,9 @@ Open `exercises/01_breakpoints.py`. A function counts vowels, but returns wrong 
 
 **Instructions:**
 1. Set a breakpoint on the `if char in "aeiou":` line inside `count_vowels`
-2. Press `<F5>`
+2. Press `<Leader>dc`
 3. When it pauses, look at the Locals panel — what are `char` and `count`?
-4. Press `<F5>` again to continue. Does it pause a second time for the same word?
+4. Press `<Leader>dc` again to continue. Does it pause a second time for the same word?
 5. That behavior is your clue. Figure out why `count` stops being tracked after so few steps.
 
 ---
@@ -51,9 +51,9 @@ Once paused, you advance execution line by line. There are three movements:
 
 | Key | Name | What it does |
 |-----|------|--------------|
-| `<F10>` | Step over | Execute this line. If it calls a function, run the whole function without entering it. |
-| `<F11>` | Step into | If this line calls a function, jump inside that function and pause at its first line. |
-| `<F12>` | Step out | Run until the current function returns, then pause in the caller. |
+| `<Leader>dn` | Step over | Execute this line. If it calls a function, run the whole function without entering it. |
+| `<Leader>ds` | Step into | If this line calls a function, jump inside that function and pause at its first line. |
+| `<Leader>df` | Step out | Run until the current function returns, then pause in the caller. |
 
 ### The mental model: trust
 
@@ -63,7 +63,7 @@ Think of stepping in terms of how much you trust a function:
 - **Step into** = "I don't trust this. Show me."
 - **Step out** = "I've seen enough. Take me back."
 
-In practice: step over everything until a value looks wrong, then go back to where it was computed and step into the suspicious call. You'll spend most of your time pressing `<F10>`, occasionally switching to `<F11>` when something seems off.
+In practice: step over everything until a value looks wrong, then go back to where it was computed and step into the suspicious call. You'll spend most of your time pressing `<Leader>dn`, occasionally switching to `<Leader>ds` when something seems off.
 
 ### Exercise 2
 
@@ -71,7 +71,7 @@ Open `exercises/02_stepping.py`. A calculation returns the wrong answer. Two hel
 
 **Instructions:**
 1. Set a breakpoint on the first line inside `range_of`
-2. Press `<F5>`
+2. Press `<Leader>dc`
 3. Step over each helper call. After each one, check the value of the variable it assigned — does it look right?
 4. When you find the wrong value, restart (`<Leader>dr`) and this time step *into* that function to find the bug
 
@@ -93,7 +93,7 @@ Open `exercises/03_call_stack.py`. A recursive flatten function returns wrong va
 
 **Instructions:**
 1. Set a breakpoint on the `result.append(...)` line inside `flatten`
-2. Press `<F5>`. It will pause on the first non-list item. Continue with `<F5>` a few more times until you're several levels deep (you'll see the call stack growing)
+2. Press `<Leader>dc`. It will pause on the first non-list item. Continue with `<Leader>dc` a few more times until you're several levels deep (you'll see the call stack growing)
 3. In the call stack panel, navigate to the parent frames. Look at the `depth` variable at each level
 4. What does `depth` equal at the top-level call? What does that tell you about what's happening to top-level items?
 
@@ -122,7 +122,7 @@ Open `exercises/04_watch_expressions.py`. A function that finds duplicate values
 **Instructions:**
 1. Set a breakpoint inside the loop in `find_duplicate`
 2. In the Watch panel, add watches for `i` and `n`
-3. Press `<F5>` and step through the loop, watching both values
+3. Press `<Leader>dc` and step through the loop, watching both values
 4. When the function returns, compare what it actually returned to what `i` and `n` were at that moment
 
 ---
@@ -144,7 +144,7 @@ Open `exercises/05_repl.py`. An encode/decode pair should round-trip text back t
 
 **Instructions:**
 1. Set a breakpoint inside `decode` on the `shift = ...` line
-2. Press `<F5>`. Continue past the first iteration (i=0) until i=1
+2. Press `<Leader>dc`. Continue past the first iteration (i=0) until i=1
 3. Open the REPL (`<Leader>d>`)
 4. Check what `shift` is currently. Then try computing what the shift *should* be to correctly undo the encoding — look at how `encode` computed its shift for the same word position
 5. Use the REPL to call `caesar_cipher(word, -correct_shift)` with your hypothesis and see if it decodes the word properly

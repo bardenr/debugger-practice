@@ -6,7 +6,7 @@
 # Instructions:
 #   1. Set a breakpoint on the `if n in seen:` line inside find_duplicate
 #   2. In the Watch panel, add watches for: i    n    seen
-#   3. Press <F5> and step through the loop with <F10>, watching all three
+#   3. Press <Leader>dc and step through the loop with <Leader>dn, watching all three
 #      values update in the Watch panel with each step
 #   4. When the function returns, compare what it returned to the values
 #      of `i` and `n` at the moment it returned

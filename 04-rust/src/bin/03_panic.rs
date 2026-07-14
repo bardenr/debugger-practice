@@ -8,8 +8,8 @@
 //      cargo run --bin 03_panic
 //      Note what it tells you — and what it doesn't.
 //   2. Set a breakpoint on the `value.unwrap()` line inside find_config_value
-//   3. cargo build, then press <F5> and enter: target/debug/03_panic
-//   4. Continue past the successful lookups with <F5>
+//   3. cargo build, then press <Leader>dc and enter: target/debug/03_panic
+//   4. Continue past the successful lookups with <Leader>dc
 //   5. When it pauses and the Locals panel shows something unexpected for
 //      `value`, you've found the failing call
 //   6. What is the Option variant shown for `value`?

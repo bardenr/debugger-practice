@@ -6,12 +6,12 @@
 // Instructions:
 //   1. cargo build (from the 04-rust directory)
 //   2. Set a breakpoint on the .map() closure line (the |&x| line)
-//   3. Press <F5> and enter: target/debug/01_iterators
+//   3. Press <Leader>dc and enter: target/debug/01_iterators
 //   4. Each time the debugger pauses inside the closure, inspect `x` in
 //      the Locals panel, then evaluate the expression on that line.
 //      Does it produce a square?
 //
-// Tip: you can also set a breakpoint on the `let result` line, press <F11>
+// Tip: you can also set a breakpoint on the `let result` line, press <Leader>ds
 // to step into the iterator chain, and navigate through it that way.
 //
 // Constraint: no println! or dbg! macros.

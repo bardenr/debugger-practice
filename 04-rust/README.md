@@ -34,7 +34,7 @@ If you see garbled output or `<optimized out>` for variables, check that you bui
 
 ### Stepping Into Closures
 
-When a line contains a closure, `<F11>` (step into) takes you inside the closure body. The closure's arguments and any captured variables are visible in the Locals panel. `<F12>` (step out) returns you to the caller.
+When a line contains a closure, `<Leader>ds` (step into) takes you inside the closure body. The closure's arguments and any captured variables are visible in the Locals panel. `<Leader>df` (step out) returns you to the caller.
 
 In an iterator chain (`data.iter().filter(...).map(...).sum()`), each `.map()` and `.filter()` call is a separate closure. Step over the chain until the output is wrong, then restart and step into the specific closure that's misbehaving.
 

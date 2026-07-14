@@ -7,7 +7,7 @@
 # Instructions:
 #   1. Run the file once normally (python3 01_exception_breakpoints.py) to
 #      see the traceback — note what it tells you and what it doesn't
-#   2. Press <F5> in Neovim to start the debugger
+#   2. Press <Leader>dc in Neovim to start the debugger
 #   3. Before or after starting, press <Leader>dE and select "userUncaught"
 #   4. The debugger will pause at the moment the exception is raised
 #   5. Inspect the Locals panel — which record caused the crash?

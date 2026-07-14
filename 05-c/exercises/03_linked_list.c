@@ -10,8 +10,8 @@
  * Instructions:
  *   1. Set a breakpoint on the `next_node = current->next` line inside sum_list
  *   2. Add watches for: current    next_node
- *   3. Press <F5> and enter: exercises/03_linked_list
- *   4. Step through with <F10>. Watch `next_node` after each assignment.
+ *   3. Press <Leader>dc and enter: exercises/03_linked_list
+ *   4. Step through with <Leader>dn. Watch `next_node` after each assignment.
  *      For the first two nodes it should show a recognizable address pointing
  *      to the next node's struct contents.
  *   5. After the third node (value=30), step through the assignment again.

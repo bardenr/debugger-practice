@@ -8,11 +8,11 @@
 #
 # Instructions:
 #   1. Set a breakpoint on the first line inside range_of (the `hi = ...` line)
-#   2. Press <F5> and select "Python: Current File"
-#   3. Step OVER each helper call with <F10>. After each one, read the
+#   2. Press <Leader>dc and select "Python: Current File"
+#   3. Step OVER each helper call with <Leader>dn. After each one, read the
 #      value it assigned in the Locals panel. Does it look right?
 #   4. When you find the wrong intermediate value, restart (<Leader>dr)
-#      and this time step INTO that function with <F11> to find the bug.
+#      and this time step INTO that function with <Leader>ds to find the bug.
 #
 # Resist the urge to read the helper functions before you start — let
 # the debugger show you which one is wrong first.

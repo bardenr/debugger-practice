@@ -7,10 +7,10 @@
  *   1. Run it first without the debugger to see the crash:
  *        ./exercises/01_pointers
  *   2. Set a breakpoint on the `return` line inside count_chars
- *   3. Press <F5> and enter: exercises/01_pointers
+ *   3. Press <Leader>dc and enter: exercises/01_pointers
  *   4. Each time it pauses, look at `str` in the Locals panel.
  *      The debugger shows both the pointer address and the string it points to.
- *   5. Continue with <F5> until `str` looks different from the others.
+ *   5. Continue with <Leader>dc until `str` looks different from the others.
  *      What address does it show? What string contents?
  *   6. Open the REPL and evaluate: str
  *      Then evaluate: str == 0

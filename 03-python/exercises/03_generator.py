@@ -11,7 +11,7 @@
 #   1. Set a breakpoint on the snapshots.append(snapshot) line in the
 #      outer loop at the bottom of the file
 #   2. Add watches for: snapshot    snapshots
-#   3. Press <F5> and step through each iteration of the loop
+#   3. Press <Leader>dc and step through each iteration of the loop
 #   4. After the FIRST append: what does snapshots contain? Looks right.
 #   5. After the SECOND append: what does snapshots contain now?
 #      Both elements should be checked — are they what you expect?

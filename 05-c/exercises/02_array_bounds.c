@@ -10,8 +10,8 @@
  * Instructions:
  *   1. Set a breakpoint on the `total += arr[i]` line inside sum_array
  *   2. Add watches for: i    arr[i]    total
- *   3. Press <F5> and enter: exercises/02_array_bounds
- *   4. Step through each iteration with <F10>, watching all three values
+ *   3. Press <Leader>dc and enter: exercises/02_array_bounds
+ *   4. Step through each iteration with <Leader>dn, watching all three values
  *   5. The array has 5 elements (indices 0–4). Keep stepping past that.
  *      What is `i` when it stops being a valid index?
  *      What does `arr[i]` show at that point?

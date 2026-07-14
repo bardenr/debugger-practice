@@ -5,9 +5,9 @@
 #
 # Instructions:
 #   1. Set a breakpoint on the `result.append(...)` line inside flatten
-#   2. Press <F5> and select "Python: Current File"
+#   2. Press <Leader>dc and select "Python: Current File"
 #   3. The first pause will be at depth=0 (the outermost call). Note the
-#      value of `depth` in the Locals panel, then continue with <F5>
+#      value of `depth` in the Locals panel, then continue with <Leader>dc
 #   4. Keep continuing until the call stack panel shows 3+ frames (you are
 #      a few levels deep in the recursion)
 #   5. Navigate UP the call stack frames. Look at `depth` at each level.

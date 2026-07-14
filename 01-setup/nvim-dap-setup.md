@@ -115,10 +115,11 @@ local map = function(key, fn, desc)
 end
 
 -- Session control
-map("<F5>",       dap.continue,         "Debug: Continue / Start")
-map("<F10>",      dap.step_over,        "Debug: Step Over")
-map("<F11>",      dap.step_into,        "Debug: Step Into")
-map("<F12>",      dap.step_out,         "Debug: Step Out")
+-- Letters match GDB command names: c=continue, n=next, s=step, f=finish
+map("<Leader>dc", dap.continue,         "Debug: Continue / Start")
+map("<Leader>dn", dap.step_over,        "Debug: Step Over (next)")
+map("<Leader>ds", dap.step_into,        "Debug: Step Into (step)")
+map("<Leader>df", dap.step_out,         "Debug: Step Out (finish)")
 map("<Leader>dq", dap.terminate,        "Debug: Terminate")
 map("<Leader>dr", dap.restart,          "Debug: Restart")
 
@@ -150,16 +151,18 @@ map("<Leader>d>", dap.repl.open,        "Debug: Open REPL")
 
 | Key | Action | When to use |
 |-----|--------|-------------|
-| `<F5>` | Continue | Start the session, or resume from a breakpoint |
-| `<F10>` | Step over | Execute the current line; if it's a function call, run the whole function without entering it |
-| `<F11>` | Step into | If the current line calls a function, jump into that function |
-| `<F12>` | Step out | Run until the current function returns, then pause |
+| `<Leader>dc` | Continue | Start the session, or resume from a breakpoint |
+| `<Leader>dn` | Step over (next) | Execute the current line; if it's a function call, run the whole function without entering it |
+| `<Leader>ds` | Step into (step) | If the current line calls a function, jump into that function |
+| `<Leader>df` | Step out (finish) | Run until the current function returns, then pause |
 | `<Leader>dp` | Toggle breakpoint | Set or clear a breakpoint on the current line |
 | `<Leader>dw` | Conditional breakpoint | Only pause when an expression is true (e.g. `i == 42`) |
 | `<Leader>dl` | Logpoint | Print a message to the console without stopping |
 | `<Leader>de` | Evaluate | Evaluate an expression in the current scope and show the result |
 | `<Leader>du` | Toggle UI | Show/hide the dap-ui panels |
 | `<Leader>d>` | Open REPL | Run arbitrary code in the paused context |
+
+> **On the letter choices:** `c`, `n`, `s`, `f` are the actual GDB command names (`continue`, `next`, `step`, `finish`). When you move to GDB/GEF later, the same mental model transfers directly.
 
 > **On key sequence collisions:** Neovim sequences like `<Leader>dB`, `<Leader>du`, `<Leader>dr` do not conflict with each other — they are distinct sequences. The only kind of conflict would be mapping `<Leader>d` to something *and* having `<Leader>d*` sequences, or two mappings that are byte-for-byte identical. `<Leader>db` (dadbod) and `<Leader>dB` (our toggle breakpoint) are different and coexist without issue.
 
@@ -180,7 +183,7 @@ result = add(2, 3)
 print(result)
 ```
 
-Open it in Neovim, set a breakpoint on the `return` line with `<Leader>dp`, then press `<F5>`. Choose "Python: Current File" from the picker. The UI should open and execution should pause on the breakpoint.
+Open it in Neovim, set a breakpoint on the `return` line with `<Leader>dp`, then press `<Leader>dc`. Choose "Python: Current File" from the picker. The UI should open and execution should pause on the breakpoint.
 
 ### C
 
@@ -201,7 +204,7 @@ int main() {
 
 Compile with debug symbols: `gcc -g -o /tmp/test /tmp/test.c`
 
-Open `test.c` in Neovim, set a breakpoint with `<Leader>dp`, press `<F5>`, and enter `/tmp/test` when prompted for the binary path.
+Open `test.c` in Neovim, set a breakpoint with `<Leader>dp`, press `<Leader>dc`, and enter `/tmp/test` when prompted for the binary path.
 
 > **Important:** Always compile C and Rust with debug symbols (`-g` for C, the default `cargo build` for Rust). Without them, the adapter has no line/variable information to work with.
 
@@ -211,7 +214,7 @@ Open `test.c` in Neovim, set a breakpoint with `<Leader>dp`, press `<F5>`, and e
 cargo new /tmp/rust-test && cd /tmp/rust-test
 ```
 
-Edit `src/main.rs`, set a breakpoint with `<Leader>dp`, press `<F5>`, and enter `target/debug/rust-test` when prompted. Run `cargo build` first.
+Edit `src/main.rs`, set a breakpoint with `<Leader>dp`, press `<Leader>dc`, and enter `target/debug/rust-test` when prompted. Run `cargo build` first.
 
 ---
 

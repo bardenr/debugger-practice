@@ -7,8 +7,8 @@
 //   1. cargo build (from the 04-rust directory)
 //   2. Set a breakpoint on the `match` line inside parse_numbers
 //   3. Add a watch for: result
-//   4. Press <F5> and enter: target/debug/02_enums
-//   5. Step through each iteration with <F10>
+//   4. Press <Leader>dc and enter: target/debug/02_enums
+//   5. Step through each iteration with <Leader>dn
 //   6. When you reach an entry like "bad" or "invalid", look at the
 //      Locals panel — what variant does the match produce?
 //   7. Step into the matching arm and watch what gets pushed to `result`
