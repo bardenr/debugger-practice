@@ -107,7 +107,9 @@ The Locals panel is passive — it shows what's there. These two tools let you a
 
 A watch expression is evaluated and displayed every time execution pauses. You add them in the Watch panel (part of the default nvim-dap-ui layout). Type any expression — a variable name, a calculation, a function call — and it updates with each step.
 
-This is especially useful in loops where you want to track how multiple related values evolve together, side by side, across iterations.
+To add a watch: move focus into the Watch panel (`<C-w>h/j/k/l`), press `e`, type the expression, press `<Enter>`. To remove one, press `d` on it. Press `<C-w>p` to jump back to the source window.
+
+This is especially useful in loops where you want to track how multiple related values evolve together, side by side, across iterations — unlike the Locals panel, watches persist and update across every pause regardless of which frame you're in.
 
 ### Evaluate expression
 
